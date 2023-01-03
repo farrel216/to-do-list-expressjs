@@ -1,16 +1,42 @@
 var express = require("express");
 var router = express.Router();
 const Todo = require("../model/todo");
-
+const User = require("../model/user");
 /* GET home page. */
-router.get("/", async (req, res, next) => {
-  const todos = await Todo.find();
-  res.render("index", {
+router.get("/", (req, res, next) => {
+  res.render("login", {
     title: "To Do List App",
     layout: "layouts/layout",
-    todos,
   });
 });
+
+router.post("/login", async (req, res, next) => {
+  const user = await User.findOne({ username: req.body.username });
+  if(user){
+    if(user.password === req.body.password){
+      res.redirect("/todo");
+    }else{
+      res.redirect("/");
+    }
+  }
+  else{
+    res.redirect("/");
+  }
+});
+
+router.get("/register", (req, res, next) => {
+  res.render("register", {
+    title: "To Do List App",
+    layout: "layouts/layout",
+  });
+});
+
+router.post("/register", (req, res, next) => {
+  User.insertMany(req.body, (error,result)=>{
+    res.redirect("/");
+  });
+});
+
 router.delete("/",(req,res)=>{
   Todo.deleteMany((err)=>{
     if(err) console.log(err);

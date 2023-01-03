@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 
-const Todo = mongoose.model("Activity", {
-    activity: {
+const User = mongoose.model("user", {
+    username: {
         type: String,
         required: true
     },
-    completed: {
-        type: Number,
+    password: {
+        type: String,
         required: true
     }
 });
 
-module.exports = Todo;
+module.exports = User;
