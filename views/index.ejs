@@ -1,0 +1,50 @@
+<div class="container py-5 d-flex flex-column">
+  <!-- Title -->
+  <h1 id="title" class="fs-1 fw-bold">To Do List</h1>
+
+  <!-- Form Utama -->
+  <form id="todoForm" class="input-group mb-3" method="POST" action="/add">
+    <input
+      name="activity"
+      type="text"
+      class="form-control"
+      placeholder="What do you want to do today?"
+      required
+    />
+    <button
+      class="btn btn-outline-success fw-semibold"
+      type="submit"
+      id="button-addon2"
+    >
+      Add Todo
+    </button>
+  </form>
+
+  <!-- Todo List -->
+  <section class="todos mt-5">
+    <div class="title d-flex justify-content-between mb-3">
+      <h2 class="fs-3 fw-bold">To Do List</h2>
+
+      <!-- Tombol Remove All -->
+      <button
+        onclick="removeAllTodos()"
+        type="button"
+        class="btn btn-danger fw-semibold"
+      >
+        Remove All Todos
+      </button>
+    </div>
+    <ul class="list-group" id="todolist">
+      <% todos.forEach(todo => { %>
+       <li class="list-group-item d-flex justify-content-between align-items-center mb-2 bg-dark">
+        <div class="todo d-inline-block">
+          <input type="checkbox" id="check" name="check" class="form-check-input me-1">
+          <label for="check" class="form-check-label fw-semibold text-light user-select-none">
+            <%= todo.activity %> 
+          </label>
+        </div>
+       </li>
+      <% }) %>
+    </ul>
+  </section>
+</div>
