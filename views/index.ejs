@@ -26,7 +26,7 @@
       <h2 class="fs-3 fw-bold">To Do List</h2>
 
       <!-- Tombol Remove All -->
-      <form action="/todos?_method=DELETE" method="POST" class="d-inline">
+      <form action="/?_method=DELETE" method="POST" class="d-inline">
         <button
           type="submit"
           class="btn btn-danger fw-semibold"
@@ -45,6 +45,10 @@
             <%= todo.activity %> 
           </label>
         </div>
+        <form method="POST" action="/todos?_method=DELETE" class="d-inline">
+          <input type="hidden" name="_id" value="<%= todo._id %>">
+          <button class="btn btn-outline-danger fw-semibold" type="submit">Hapus</button>
+        </form>
        </li>
       <% }) %>
     </ul>
