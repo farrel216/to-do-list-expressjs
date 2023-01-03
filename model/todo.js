@@ -4,6 +4,10 @@ const Todo = mongoose.model("Todo", {
     activity: {
         type: String,
         required: true
+    },
+    completed: {
+        type: Number,
+        required: true
     }
 });
 

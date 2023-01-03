@@ -18,7 +18,12 @@ router.delete("/",(req,res)=>{
   });
 })
 
-
+router.put("/todos", (req, res, next) => {
+  Todo.updateOne({_id:req.body._id}, {completed:req.body.completed}, (err)=>{
+    if(err) console.log(err);
+    res.redirect("/");
+  })
+});
 router.delete("/todos", (req, res, next) => {
   Todo.deleteOne({ _id: req.body._id}).then((result) => {
     // req.flash("success_msg", "Todo deleted successfully");
