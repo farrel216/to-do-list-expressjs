@@ -19,4 +19,12 @@ router.post("/add", (req, res, next) => {
   });
 });
 
+router.delete("/todos",(req,res)=>{
+  Todo.deleteMany((err)=>{
+    if(err) console.log(err);
+    res.redirect("/");
+  });
+})
+
+
 module.exports = router;

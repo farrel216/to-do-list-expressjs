@@ -26,13 +26,15 @@
       <h2 class="fs-3 fw-bold">To Do List</h2>
 
       <!-- Tombol Remove All -->
-      <button
-        onclick="removeAllTodos()"
-        type="button"
-        class="btn btn-danger fw-semibold"
-      >
-        Remove All Todos
-      </button>
+      <form action="/todos?_method=DELETE" method="POST" class="d-inline">
+        <button
+          type="submit"
+          class="btn btn-danger fw-semibold"
+          onclick="return confirm('Are you sure?')"
+        >
+          Remove All Todos
+        </button>
+      </form>
     </div>
     <ul class="list-group" id="todolist">
       <% todos.forEach(todo => { %>
