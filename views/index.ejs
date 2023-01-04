@@ -6,8 +6,9 @@
   </div>
   <!-- Form Utama -->
   <form id="todoForm" class="input-group mb-3" method="POST" action="/todo/add">
-    <input type="hidden" name="completed" value="0">
+    <input type="hidden" name="completed" value="0" />
     <input
+      id="taskAdd"
       name="activity"
       type="text"
       class="form-control"
@@ -39,30 +40,6 @@
         </button>
       </form>
     </div>
-    <ul class="list-group" id="todolist">
-      <% todos.forEach(todo => { %>
-       <li class="list-group-item d-flex justify-content-between align-items-center mb-2 <%= todo.completed ? 'bg-success' : 'bg-light' %>  row ">
-        <div class="ms-3 todo d-inline-block col-3">
-          <label for="check" class="form-check-label fw-semibold text-dark user-select-none <%= todo.completed ? 'text-decoration-line-through' : '' %>">
-            <%= todo.activity %>
-          </label>
-        </div>
-        <label class="badge bg-primary rounded-pill text-light fw-semibold col-3 <%= todo.completed ? '' : 'bg-danger' %>">
-          <%= todo.completed ? 'Completed' : 'Not Completed' %></label>
-          <div class="col-3 d-flex justify-content-end">
-        <form method="POST" action="/todo/todos?_method=PUT" class="d-inline me-3">
-          <input type="hidden" name="_id" value="<%= todo._id %>">
-          <input type="hidden" name="completed" value="<%= todo.completed ? 0 : 1 %>">
-          <button class="btn btn-primary fw-semibold" type="submit"><%= todo.completed ? 'Uncomplete' : 'Complete' %></button>
-        </form>
-        <form method="POST" action="/todo/todos?_method=DELETE" class="d-inline ">
-          <input type="hidden" name="_id" value="<%= todo._id %>">
-          <button class="btn btn-outline-danger fw-semibold" type="submit">Hapus</button>
-        </form>
-        </div>
-       </li>
-      <% }) %>
-    </ul>
+    <ul class="list-group" id="todolist"></ul>
   </section>
 </div>
-<!-- ajax post -->

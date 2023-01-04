@@ -4,7 +4,13 @@ var router = express.Router();
 const {getTodo, deleteTodo, updateTodo, deleteTodos, addTodo} = require("../controllers/todoController");
 
 /* GET users listing. */
-router.get('/', getTodo);
+router.get('/', (req, res, next) =>{
+  res.render("index", {
+    title: "To Do List App",
+    layout: "layouts/layout",
+  });
+})
+router.post("/", getTodo);
 
 router.delete("/",deleteTodo);
 
