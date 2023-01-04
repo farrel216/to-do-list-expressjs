@@ -7,30 +7,32 @@ const getTodo = async(req, res, next) =>{
         res.status(500).json({error:err});
     })
   }
-const deleteTodo = (req,res)=>{
+const deleteTodos = (req,res)=>{
     Todo.deleteMany((err)=>{
       if(err) console.log(err);
-      res.redirect("/todo");
     });
+    res.redirect("/");
   }
 
 const updateTodo = (req, res, next) => {
-  Todo.updateOne({_id:req.body._id}, {completed:req.body.completed}, (err)=>{
+  Todo.updateOne({_id:req.params.id}, {completed:req.body.completed}, (err)=>{
     if(err) console.log(err);
-    res.redirect("/todo");
   })
+    res.redirect("/");
 }
 
-const deleteTodos = (req, res, next) => {
-    Todo.deleteOne({ _id: req.body._id}).then((result) => {
+const deleteTodo = (req, res, next) => {
+    Todo.deleteOne({ _id: req.params.id}).then((result) => {
       // req.flash("success_msg", "Todo deleted successfully");
-      res.redirect("/todo");
     });
+  res.redirect("/");
+
   }
 const addTodo = (req, res, next) => {
     Todo.insertMany(req.body, (error,result)=>{
       // req.flash("success_msg", "Todo added successfully");
-      res.redirect("/");
+  res.redirect("/");
+
     });
   }
 module.exports = {getTodo, deleteTodo, updateTodo, deleteTodos, addTodo};

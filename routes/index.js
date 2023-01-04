@@ -5,7 +5,10 @@ var router = express.Router();
 router.get("/", (req, res, next) => {
   let sess = req.session;
   if(sess.username){
-    return res.redirect("/todo");
+    res.render("index", {
+      title: "To Do List App",
+      layout: "layouts/layout",
+    });
   }
   else{res.render("login", {
     title: "Login Page",
