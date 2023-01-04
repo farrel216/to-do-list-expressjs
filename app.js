@@ -6,14 +6,19 @@ var logger = require('morgan');
 const flash = require("connect-flash");
 const session = require("express-session");
 
-
+require("dotenv").config();
 require("./utils/db");
 
-var indexRouter = require('./routes/index');
-var todoRouter = require('./routes/todo');
+
 
 var app = express();
-const port = 3020;
+const port = process.env.PORT;
+
+app.use(session({ secret: "cats", resave: true, saveUninitialized: true }));
+
+var indexRouter = require('./routes/index');
+const authRouter = require("./routes/auth");
+var todoRouter = require('./routes/todo');
 
 app.listen(port, () => {
   console.log(`Server started on port http://localhost:${port}`);
@@ -32,12 +37,21 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser("cats"));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(flash());
 
 app.use('/', indexRouter);
+app.use('/auth', authRouter);
+app.use(function(req, res, next) {
+  if(req.session.username){
+    next();
+  }
+  else{
+    res.redirect("/");
+  }
+});
 app.use('/todo', todoRouter);
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
