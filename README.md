@@ -19,4 +19,4 @@
 
 ### NB
 
-Jangan lupa menyalakan server mysql
+Wajib menginstall mongodb terlebih dahulu
