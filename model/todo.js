@@ -6,7 +6,7 @@ const Todo = mongoose.model("Activity", {
         required: true
     },
     completed: {
-        type: Number,
+        type: Boolean,
         required: true
     }
 });
