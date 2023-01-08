@@ -13,7 +13,7 @@ require("./utils/db");
 
 
 var app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 5000;
 
 app.use(session({ secret: "cats", resave: true, saveUninitialized: true }));
 
@@ -21,16 +21,14 @@ var indexRouter = require('./routes/index');
 const apiRouter = require("./routes/api");
 
 app.listen(port, () => {
-  console.log(`Server started on port http://localhost:${port}`);
+  console.log(`Server started on port ${port}`);
 });
 
 app.use(cors({
   origin: "*",
 }));
 const methodOverride = require("method-override");
-const expressLayouts = require("express-ejs-layouts");
 
-app.use(expressLayouts);
 app.use(methodOverride("_method"));
 
 // view engine setup
