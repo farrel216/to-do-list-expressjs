@@ -14,6 +14,7 @@ require("./utils/db");
 
 var app = express();
 const port = process.env.PORT || 5000;
+const origin = process.env.ORIGIN
 
 // app.use(session({resave: true, saveUninitialized: true }));
 
@@ -25,7 +26,7 @@ app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
 
-app.use(cors({origin:'http://localhost:3000', credentials: true}));
+app.use(cors({origin:['http://localhost:3000',origin], credentials: true}));
 const methodOverride = require("method-override");
 
 app.use(methodOverride("_method"));
