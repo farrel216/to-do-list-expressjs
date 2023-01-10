@@ -15,18 +15,17 @@ require("./utils/db");
 var app = express();
 const port = process.env.PORT || 5000;
 
-app.use(session({ secret: "cats", resave: true, saveUninitialized: true }));
+// app.use(session({resave: true, saveUninitialized: true }));
 
 var indexRouter = require('./routes/index');
 const apiRouter = require("./routes/api");
+const authRouter = require("./routes/auth");
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
 
-app.use(cors({
-  origin: "*",
-}));
+app.use(cors({origin:'http://localhost:3000', credentials: true}));
 const methodOverride = require("method-override");
 
 app.use(methodOverride("_method"));
@@ -34,12 +33,13 @@ app.use(methodOverride("_method"));
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser("cats"));
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
 
 app.use('/', indexRouter);
+app.use('/auth', authRouter);
 app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler

@@ -1,7 +1,7 @@
 GET http://localhost:5000/api HTTP/1.1
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2JiOWE4MGU2Yzk5MmY0NGY3Zjk5NTUiLCJpYXQiOjE2NzMyNDE2NzksImV4cCI6MTY3MzI0MTY5NH0.s5AEveiDlis_q3R7JUzqMvcSVxdAWEHserqyh3mCYrM
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2JhZDk2NTc5OTNhODk3ZGJkNDc4NzkiLCJpYXQiOjE2NzMxODk3NzksImV4cCI6MTY3MzE4OTc5NH0.a67Q3cjhOaK-CDoUKbfwDXIJr-OdUM8GAsKF1vv-rS0
 ###
+
 POST http://localhost:5000/auth/register HTTP/1.1
 Content-Type: application/json
 
@@ -16,8 +16,8 @@ POST http://localhost:5000/auth/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "farrelarp123",
-    "password": "12345678"
+    "username": "farrel",
+    "password": "1234569w876"
 }
 
 ###

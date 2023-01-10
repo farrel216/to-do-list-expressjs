@@ -1,18 +1,19 @@
 var express = require('express');
 var router = express.Router();
+const {verifyToken} = require("../middleware/VerifyToken");
 const {getTodo, deleteTodo, updateTodo, deleteTodos, addTodo, activeTodo, completedTodo} = require("../controllers/todoController");
 
 /* GET users listing. */
+router.get("/",verifyToken,getTodo);
+router.get("/active",verifyToken, activeTodo);
+router.get("/completed",verifyToken,completedTodo);
 
-router.get("/", getTodo);
-router.get("/active", activeTodo);
-router.get("/completed", completedTodo);
+router.delete("/todos",verifyToken,deleteTodos);
 
-router.delete("/todos",deleteTodos);
+router.put("/:id",verifyToken, updateTodo);
+router.delete("/:id",verifyToken, deleteTodo);
 
-router.put("/:id", updateTodo);
-router.delete("/:id", deleteTodo);
+router.post("/add",verifyToken, addTodo);
 
-router.post("/add", addTodo);
 
 module.exports = router;
